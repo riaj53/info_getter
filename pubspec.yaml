@@ -1,10 +1,11 @@
 name: info_getter
 description: "A simple and lightweight Flutter plugin to get the application version name. Works reliably on Android & iOS"
 version: 1.0.0
-homepage:
-
+homepage: https://github.com/riaj53/info_getter
+repository: https://github.com/riaj53/info_getter
+issue_tracker: https://github.com/riaj53/info_getter/issues
 environment:
-  sdk: ^3.8.1
+  sdk: '>=3.0.0 <4.0.0'
   flutter: '>=3.3.0'
 
 dependencies:
@@ -19,6 +20,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+topics:
+  - flutter
+  - plugin
+  - version
+  - app-info
+  - version-getter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

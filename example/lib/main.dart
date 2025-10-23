@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:flutter/services.dart';
-// 1. Import your new package
-import 'package:info_getter/info_getter.dart';
+import 'package:info_getter/info_getter.dart'; // Import your package
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +18,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// This is your splash screen widget
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -30,62 +26,87 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  String _appVersion = 'Loading...';
+  String _appVersion = 'loading...';
 
   @override
   void initState() {
     super.initState();
-    // 2. Call the function to get the app version when the screen loads
-    _initAppVersion();
+    _loadVersion();
   }
 
-  Future<void> _initAppVersion() async {
-    String appVersion;
+  Future<void> _loadVersion() async {
+    // Simulate a short delay for the splash screen
+    await Future.delayed(const Duration(seconds: 2));
+
+    String? version;
     try {
-      // 3. Use your package to get the version
-      appVersion = await InfoGetter.getAppVersion() ?? 'Unknown version';
-    } on PlatformException {
-      appVersion = 'Failed to get version.';
+      // Call your package's method
+      version = await InfoGetter.getAppVersion();
+    } catch (e) {
+      // Handle any potential errors
+      version = 'Error';
     }
 
-    if (!mounted) return;
-
-    setState(() {
-      _appVersion = appVersion;
-    });
+    if (mounted) {
+      setState(() {
+        _appVersion = version ?? 'Unknown';
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
+      // A nice deep blue, similar to the Flutter logo
+      backgroundColor: const Color(0xFF0D47A1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const FlutterLogo(size: 100),
+            // A simple app icon placeholder
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                // The color `0xFF0D47A1` is R: 13, G: 71, B: 161
+                color: const Color.fromRGBO(13, 71, 161, 0.1),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.white,
+                size: 60,
+              ),
+            ),
             const SizedBox(height: 24),
+            // Your App Title
             const Text(
-              'My Awesome App',
+              'Info Getter Example',
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
-            const Spacer(),
-            // 4. Display the version on your splash screen
+            const SizedBox(height: 80),
+            // The version number from your package
             Text(
               'Version: $_appVersion',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
-                color: Colors.white.withOpacity(0.7),
+                // This is the fix for the lint on line 98.
+                // Colors.white is R:255, G:255, B:255. 0.7 is the opacity.
+                color: Color.fromRGBO(255, 255, 255, 0.7),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 16),
+            const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
           ],
         ),
       ),
     );
   }
 }
+

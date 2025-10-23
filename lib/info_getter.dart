@@ -14,4 +14,3 @@ class InfoGetter {
     return version;
   }
 }
-
