@@ -1,5 +1,21 @@
+# Info Getter
 
-## Info Getter 📦
+<p align="center">
+  <img src="https://raw.githubusercontent.com/riaj53/info_getter/main/info_getter.png" alt="Info Getter Logo" width="700"/>
+</p>
+
+<p align="center">
+  <a href="https://pub.dev/packages/info_getter">
+    <img src="https://img.shields.io/pub/v/info_getter?color=blue" alt="pub version"/>
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="license"/>
+  </a>
+  <a href="https://pub.dev/packages/lints">
+    <img src="https://img.shields.io/badge/style-lints-40c4ff.svg" alt="style"/>
+  </a>
+</p>
+
 
 A simple, lightweight Flutter plugin to get the application version from pubspec.yaml on both Android and iOS. No frills, just the version.
 
@@ -92,3 +108,4 @@ in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions
+
